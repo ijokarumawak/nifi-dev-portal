@@ -1,0 +1,17 @@
+#!/bin/bash
+
+index=$1
+if [ -z $index ]
+then
+  echo index was not specified.
+  exit 1
+fi
+
+indexDefFile="./conf/elasticsearch/indices/$index.json"
+if [ ! -f $indexDefFile ]
+then
+  echo ${indexDefFile} was not found.
+  exit 1
+fi
+
+curl -XPUT "http://es.nifi-dev-portal:9200/$index/" -d @${indexDefFile}

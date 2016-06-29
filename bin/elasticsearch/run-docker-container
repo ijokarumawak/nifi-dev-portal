@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker run -d -p 9200:9200 -p 9300:9300 --name es.nifi-dev-portal elasticsearch
+echo "You may need to update hosts file for es.nifi-dev-portal to point $(docker-machine ip default)"

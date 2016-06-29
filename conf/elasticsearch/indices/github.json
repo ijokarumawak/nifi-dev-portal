@@ -1,0 +1,32 @@
+{
+  "settings" : {
+    "index" : {
+      "number_of_shards" : 1,
+      "number_of_replicas" : 0
+    }
+  },
+  "mappings" : {
+    "commit" : {
+      "_source": {"enabled": true},
+      "properties": {
+        "sha": {"type": "string", "index": "not_analyzed"},
+        "date": {"type": "date"},
+        "message": {"type": "string", "index": "analyzed", "copy_to": "messageRaw"},
+        "messageRaw": {"type": "string", "index": "not_analyzed"},
+        "url": {"type": "string", "index": "not_analyzed"},
+        "file": {
+          "properties": {
+            "sha": {"type": "string", "index": "not_analyzed"},
+            "dir": {"type": "string", "index": "not_analyzed"},
+            "name": {"type": "string", "index": "not_analyzed"},
+            "path": {"type": "string", "index": "analyzed"},
+            "module": {"type": "string", "index": "not_analyzed"},
+            "status": {"type": "string", "index": "not_analyzed"},
+            "changes": {"type": "integer"},
+            "blob_url": {"type": "string", "index": "not_analyzed"}
+          }
+        }
+      }
+    }
+  }
+}

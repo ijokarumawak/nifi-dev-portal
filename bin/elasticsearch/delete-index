@@ -1,0 +1,10 @@
+#!/bin/bash
+
+index=$1
+if [ -z $index ]
+then
+  echo index was not specified.
+  exit 1
+fi
+
+curl -XDELETE "http://es.nifi-dev-portal:9200/$index/"
